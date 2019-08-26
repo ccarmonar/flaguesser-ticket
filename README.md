@@ -15,4 +15,9 @@ Para inciar servidor de forma simple:
   node app.js
   ```
 
+Para construir e iniciar el container de forma simple:
+ ```
+  docker build . -t flaguesser-ticket
+  docker run -e 9000:3000 flaguesser-ticket
+  ```
 
