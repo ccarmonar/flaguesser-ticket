@@ -1,6 +1,6 @@
 'use strict';
  
-const Ticket = require('../src/ticket');
+const Ticket = require('../ticket/ticket');
  
 class TicketRepository {
     constructor() {

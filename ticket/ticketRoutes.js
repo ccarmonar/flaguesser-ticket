@@ -1,7 +1,7 @@
 'use strict';
  
 const Router = require('express');
-const ticketRepo = require('../src/ticketRepository');
+const ticketRepo = require('../ticket/ticketRepository');
  
 const getTicketRoutes = (app) => {
     const router = new Router();
