@@ -28,7 +28,7 @@ const getTicketRoutes = (app) => {
             res.send(result);
         });
  
-    app.use('/ticket', router);
+    app.use('/', router);
 };
  
 module.exports = getTicketRoutes;

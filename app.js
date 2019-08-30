@@ -11,7 +11,17 @@ app.use(bodyParser.json());
 require('./ticket/ticketRoutes')(app);
 require('./version/versionRoutes')(app, config); 
 
-
+/*
+const { Client } = require('pg');
+const connectionData = {
+  user: 'postgres',
+  host: '',
+  database: 'ticket',
+  password: 'password',
+  port: 5432,
+}
+*/
 app.listen(3000, () => {
     console.log("Server is up!");
+
 });
