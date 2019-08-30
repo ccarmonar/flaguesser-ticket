@@ -44,14 +44,15 @@ class TicketRepository {
             .then(response => {
                 for (var i in response.rows) {
                     var t = new Ticket(response.rows[i].id,response.rows[i].title,response.rows[i].description)
-                    aux.push([Number(i)+1,t])
+                    aux.push([Number(response.rows[i].id),t])
                 }
                 this.tickets = new Map(aux)
                 // console.log(this.tickets)
-                client.end()
+                //client.end()
             })
             .catch(err => {
-                client.end()
+                //client.end()
+                console.log(err)
             })
 
 
@@ -60,28 +61,61 @@ class TicketRepository {
  
     getById(id) {
         console.log(this.tickets.get(id))
-        return this.tickets.get(id);
+        if (this.tickets.get(id) !== undefined){
+            return this.tickets.get(id);
+        } else {
+            return undefined;
+        }
     }
  
     getAll() {
         return Array.from(this.tickets.values());
     }
  
-    remove() {
-        const keys = Array.from(this.tickets.keys());
-        this.tickets.delete(keys[keys.length - 1]);
+    remove(id) {
+        if (this.getById(id) !== undefined){
+            const query = {
+                text: 'DELETE FROM tickets WHERE id=($1)',
+                values: [id],
+            }
+
+
+            
+            var deteleTicket = client.query(query)
+             .then(res => {
+                this.tickets.delete(id);
+                })
+             .catch(err => {
+                    console.log(err)
+                })
+             return "Ticket deleted";
+        } else {
+            return "Ticket Don't Exist";
+        }
+
+
+
     }
  
     save(ticket) {
-        if (this.getById(ticket.id) !== undefined) {
-            this.tickets[ticket.id] = ticket;
-            return "Updated Ticket with id=" + ticket.id;
-        }
-        else {
-            this.tickets.set(ticket.id, ticket);
-            return "Added Ticket with id=" + ticket.id;
-        }
+        //this.tickets.set(ticket.id, ticket);
+        const query ={
+            text: 'INSERT INTO tickets(title, description) VALUES ($1, $2) RETURNING id',
+            values: [ticket.title, ticket.description],
+            }
+
+        var newTicket = client.query(query)
+        var last = client.query('select id from tickets order by id desc limit 1;')
+        .then(res => {
+            console.log(res.rows[0].id)
+            var numberid = res.rows[0].id
+            this.tickets.set(numberid, new Ticket(numberid, ticket.title, ticket.description));
+            })
+
+            
+        return "Ticket Added"
     }
+    
 }
  
 const ticketRepository = new TicketRepository();

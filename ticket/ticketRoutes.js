@@ -16,10 +16,10 @@ const getTicketRoutes = (app) => {
             const result = ticketRepo.getAll();
             res.send(result);
         })
-        .get('/remove', (req, res) => {
-            ticketRepo.remove();
-            const result = 'Last ticket remove. Total count: '
-                + ticketRepo.tickets.size;
+        .delete('/remove/:id', (req, res) => {
+            const id = parseInt(req.params.id);
+            //ticketRepo.remove(id);
+            const result = ticketRepo.remove(id);
             res.send(result);
         })
         .post('/save', (req, res) => {

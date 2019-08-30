@@ -4,7 +4,7 @@ const sequelize = new Sequelize('ticket', 'postgres', 'password', {
   dialect: 'postgres'
 });
 
-
+/*
 sequelize
   .authenticate()
   .then(() => {
@@ -13,7 +13,7 @@ sequelize
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
+*/
 
 class TicketModel extends Sequelize.Model {}
 	TicketModel.init({

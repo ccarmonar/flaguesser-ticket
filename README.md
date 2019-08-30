@@ -9,6 +9,7 @@ Intallar node.js + express.js
   sudo apt install nodejs-legacy
   npm install express.js --save
   npm install --save pg dotenv
+  npm install --save sequelize
   ```
 
 Para inciar servidor de forma simple:
