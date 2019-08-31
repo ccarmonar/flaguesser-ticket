@@ -1,2 +1,3 @@
 node_modules/
 *.flaguesser-ticket.sublime-project
+*.sublime-workspace
