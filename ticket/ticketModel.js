@@ -2,10 +2,10 @@
 /*Conexión con la BD*/
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(
-	process.env['DATABASE_NAME'] || 'ticket', 
-	process.env['DATABASE_USER'] || 'postgres', 
-	process.env['DATABASE_PASS'] || 'password', {
-  host: process.env['DATABASE_HOST'] || 'localhost',
+	process.env['DB_NAME'] || 'ticket', 
+	process.env['DB_USER'] || 'postgres', 
+	process.env['DB_PASS'] || 'password', {
+  host: process.env['DB_HOST'] || 'localhost',
   dialect: 'postgres'
 });
 

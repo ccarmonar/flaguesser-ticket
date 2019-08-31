@@ -4,8 +4,52 @@
 		"selected_items":
 		[
 			[
+				"tic",
+				"tickets"
+			],
+			[
+				"ticket",
+				"tickets"
+			],
+			[
 				"cons",
 				"console"
+			],
+			[
+				"Ti",
+				"TicketRepository"
+			],
+			[
+				"delte",
+				"deleted"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"ticke",
+				"ticket"
+			],
+			[
+				"desc",
+				"description"
+			],
+			[
+				"tick",
+				"ticket"
+			],
+			[
+				"c",
+				"console"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"ne",
+				"newTicket"
 			],
 			[
 				"ti",
@@ -14,14 +58,6 @@
 			[
 				"allT",
 				"allTicketsJSON"
-			],
-			[
-				"ticke",
-				"tickets"
-			],
-			[
-				"ticket",
-				"Ticket"
 			],
 			[
 				"req",
@@ -35,15 +71,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "README.md",
-			"settings":
-			{
-				"buffer_size": 854,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -83,17 +110,19 @@
 	],
 	"file_history":
 	[
+		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/.dockerignore",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/app.js",
+		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/ticket/ticketRoutes.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/ticket/ticketRepository.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/ticket/ticket.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/ticket/ticketModel.js",
+		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/Dockerfile",
+		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/.env",
+		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/version/config.js",
+		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/version/versionRoutes.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/README.md",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/.sequelizerc",
-		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/Dockerfile",
-		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/ticket/ticketRoutes.js",
-		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/version/config.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/package.json",
-		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/version/versionRoutes.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/src/ticket.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/src/ticketRoutes.js",
 		"/home/c161905/Documentos/TPS/flaguesser/flaguesser-ticket/src/ticketRepository.js",
@@ -125,6 +154,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"}\n"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -142,39 +172,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "README.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 854,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								357,
-								357
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],

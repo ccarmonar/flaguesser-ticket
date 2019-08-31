@@ -8,11 +8,11 @@ const TicketModel = require('../ticket/ticketModel');
 /*Conexión con la BD */
 const { Client } = require('pg');
 const connectionData = {
-  user: process.env['DATABASE_USER'] || 'postgres',
-  host: process.env['DATABASE_HOST'] || 'localhost',
-  database: process.env['DATABASE_NAME'] || 'ticket',
-  password: process.env['DATABASE_PASS'] || 'password',
-  port: process.env['DATABASE_PORT'] || 5432,
+  user: process.env['DB_USER'] || 'postgres',
+  host: process.env['DB_HOST'] || 'localhost',
+  database: process.env['DB_NAME'] || 'ticket',
+  password: process.env['DB_PASS'] || 'password',
+  port: process.env['DB_PORT'] || 5432,
 }
 const client = new Client(connectionData)
 client.connect()

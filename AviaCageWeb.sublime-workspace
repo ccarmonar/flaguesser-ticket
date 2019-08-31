@@ -19,6 +19,15 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/resources/views/welcome.blade.php",
+			"settings":
+			{
+				"buffer_size": 27225,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -53,16 +62,7 @@
 	"expanded_folders":
 	[
 		"/home/c161905/Documentos/Feria de Software/AviaCageWeb",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/app",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/app/Http",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/app/Http/Controllers",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/app/Http/Middleware",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/public",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/public/js",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/resources",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/resources/views",
-		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/routes"
+		"/home/c161905/Documentos/Feria de Software/AviaCageWeb/images"
 	],
 	"file_history":
 	[
@@ -125,8 +125,39 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/c161905/Documentos/Feria de Software/AviaCageWeb/AviaCageWeb-Funcional/resources/views/welcome.blade.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 27225,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								25752,
+								25752
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8060.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],

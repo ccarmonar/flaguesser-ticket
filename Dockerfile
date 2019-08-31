@@ -6,10 +6,6 @@ WORKDIR /usr/src/app
  
 COPY package.json ./
 RUN npm install
-RUN apt install nodejs-legacy
-RUN apt install express.js --save
-RUN apt install --save pg dotenv
-RUN apt install --save sequelize
 
  
 COPY . .
