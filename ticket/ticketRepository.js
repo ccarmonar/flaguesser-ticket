@@ -1,44 +1,29 @@
 'use strict';
  
+ /*Se llama a las clases Ticket y TicketModel para hacer el repositorio y construir la BD respectivamente (si no existe)*/
 const Ticket = require('../ticket/ticket');
 const TicketModel = require('../ticket/ticketModel');
 
 
+/*Conexión con la BD */
 const { Client } = require('pg');
 const connectionData = {
-  user: 'postgres',
-  host: '',
-  database: 'ticket',
-  password: 'password',
-  port: 5432,
+  user: process.env['DATABASE_USER'] || 'postgres',
+  host: process.env['DATABASE_HOST'] || 'localhost',
+  database: process.env['DATABASE_NAME'] || 'ticket',
+  password: process.env['DATABASE_PASS'] || 'password',
+  port: process.env['DATABASE_PORT'] || 5432,
 }
-
-
 const client = new Client(connectionData)
 client.connect()
-/*
-console.log("holaaaa")
-client.query('SELECT * FROM tickets;')
-    .then(response => {
-        console.log(response.rows)
-        client.end()
-    })
-    .catch(err => {
-        client.end()
-    })
-*/
+
+
+/*Repositorio de Tickets*/
+
 class TicketRepository {
+
+    /*Constructor del repositorio*/
     constructor() {
-        /*
-        this.tickets = new Map([
-            [1, new Ticket(1, 'Bug1', 'text1')],
-            [2, new Ticket(2, 'Bug2', 'text2')],
-            [3, new Ticket(3, 'Bug3', 'text3')],
-            [4, new Ticket(4, 'Bug4', 'text4')]
-        ]);
-    
-        console.log(this.tickets)
-        */    
         var aux = [];
         var allTickets = client.query('SELECT * FROM tickets;')
             .then(response => {
@@ -47,18 +32,13 @@ class TicketRepository {
                     aux.push([Number(response.rows[i].id),t])
                 }
                 this.tickets = new Map(aux)
-                // console.log(this.tickets)
-                //client.end()
             })
             .catch(err => {
-                //client.end()
                 console.log(err)
             })
-
-
-
     }
  
+    /*Obtener un ticket por id*/
     getById(id) {
         console.log(this.tickets.get(id))
         if (this.tickets.get(id) !== undefined){
@@ -67,20 +47,18 @@ class TicketRepository {
             return undefined;
         }
     }
- 
+    /*Obtener todo los tickets*/
     getAll() {
         return Array.from(this.tickets.values());
     }
  
+    /*Eliminar un ticket: Se elimina en la BD y en el repositorio. Si ticket no existe, retorna comunicando el mensaje.*/
     remove(id) {
         if (this.getById(id) !== undefined){
             const query = {
                 text: 'DELETE FROM tickets WHERE id=($1)',
                 values: [id],
-            }
-
-
-            
+            }            
             var deteleTicket = client.query(query)
              .then(res => {
                 this.tickets.delete(id);
@@ -97,8 +75,8 @@ class TicketRepository {
 
     }
  
+    /*Crear un ticket: Se crea en la BD y en el repositorio*/
     save(ticket) {
-        //this.tickets.set(ticket.id, ticket);
         const query ={
             text: 'INSERT INTO tickets(title, description) VALUES ($1, $2) RETURNING id',
             values: [ticket.title, ticket.description],
@@ -109,7 +87,23 @@ class TicketRepository {
         .then(res => {
             console.log(res.rows[0].id)
             var numberid = res.rows[0].id
-            this.tickets.set(numberid, new Ticket(numberid, ticket.title, ticket.description));
+            /*Si no existe nada en la BD, al crear el primer ticket también se crea el repositorio*/
+            if (this.tickets !== undefined) {
+                this.tickets.set(numberid, new Ticket(numberid, ticket.title, ticket.description));
+            } else {
+                var aux = [];
+                var allTickets = client.query('SELECT * FROM tickets;')
+                    .then(response => {
+                        for (var i in response.rows) {
+                            var t = new Ticket(response.rows[i].id,response.rows[i].title,response.rows[i].description)
+                            aux.push([Number(response.rows[i].id),t])
+                        }
+                        this.tickets = new Map(aux)
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    })
+                }
             })
 
             
@@ -118,6 +112,6 @@ class TicketRepository {
     
 }
  
+ /*Exportamos el repositorio*/
 const ticketRepository = new TicketRepository();
- 
 module.exports = ticketRepository;

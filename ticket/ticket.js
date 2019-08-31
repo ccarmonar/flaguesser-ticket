@@ -1,5 +1,6 @@
 'use strict';
  
+/*Constructor de la clase Ticket para el repositorio*/
 class Ticket {
     constructor(id, title, description) {
         this.id = id;
@@ -7,5 +8,5 @@ class Ticket {
         this.description = description;
     }
 }
- 
+ /*Exportamos la clase*/
 module.exports = Ticket;
