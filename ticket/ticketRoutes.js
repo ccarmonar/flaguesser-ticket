@@ -1,6 +1,7 @@
 'use strict';
  /*conexión con express y comunicación con el repositorio de tickets*/
 const Router = require('express');
+const TicketModel = require('../ticket/ticketModel');
 const ticketRepo = require('../ticket/ticketRepository');
  
 
@@ -18,6 +19,7 @@ const getTicketRoutes = (app) => {
         /*Ruta GET para obtener todos los tickets*/
         .get('/all', (req, res) => {
             const result = ticketRepo.getAll();
+            console.log(result);
             res.send(result);
         })
 

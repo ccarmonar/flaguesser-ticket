@@ -32,6 +32,4 @@ services:
       - ticket-volume:/var/lib/postgresql/data
 
 volumes:
-  player-volume:
-  match-volume:
   ticket-volume:

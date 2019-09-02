@@ -10,6 +10,8 @@ Intallar node.js + express.js
   npm install express.js --save
   npm install --save pg dotenv
   npm install --save sequelize
+  npm install --save-dev mocha chai chai-http
+  npm install mocha -g
   ```
 
 Para inciar servidor de forma simple:
@@ -39,6 +41,6 @@ Conexión manual y comandos de utilidad:
 ```
 \c tickets
 \dt #<ver tablas>
-select * from ticket #<ver filas>
-DROP DATABASE ticket;
+select * from tickets; #<ver filas>
+DROP DATABASE ticket; #<eliminar base de datos>
 ```

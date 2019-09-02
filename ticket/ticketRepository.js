@@ -2,7 +2,7 @@
  
  /*Se llama a las clases Ticket y TicketModel para hacer el repositorio y construir la BD respectivamente (si no existe)*/
 const Ticket = require('../ticket/ticket');
-const TicketModel = require('../ticket/ticketModel');
+
 
 
 /*Conexión con la BD */
@@ -77,34 +77,38 @@ class TicketRepository {
  
     /*Crear un ticket: Se crea en la BD y en el repositorio*/
     save(ticket) {
-        const query ={
-            text: 'INSERT INTO tickets(title, description) VALUES ($1, $2) RETURNING id',
-            values: [ticket.title, ticket.description],
-            }
-
-        var newTicket = client.query(query)
-        var last = client.query('select id from tickets order by id desc limit 1;')
-        .then(res => {
-            console.log(res.rows[0].id)
-            var numberid = res.rows[0].id
-            /*Si no existe nada en la BD, al crear el primer ticket también se crea el repositorio*/
-            if (this.tickets !== undefined) {
-                this.tickets.set(numberid, new Ticket(numberid, ticket.title, ticket.description));
+        /*Verificar validez*/
+        if (ticket['title'] === undefined || ticket['description'] === undefined){
+                return "Ticket no valid";
             } else {
-                var aux = [];
-                var allTickets = client.query('SELECT * FROM tickets;')
-                    .then(response => {
-                        for (var i in response.rows) {
-                            var t = new Ticket(response.rows[i].id,response.rows[i].title,response.rows[i].description)
-                            aux.push([Number(response.rows[i].id),t])
-                        }
-                        this.tickets = new Map(aux)
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+            /*Necesitamos el id del ultimo ticket para tenerlo en el respositorio tambien*/
+            const query ={
+                text: 'INSERT INTO tickets(title, description) VALUES ($1, $2) RETURNING id',
+                values: [ticket.title, ticket.description],
                 }
-            })
+
+            var newTicket = client.query(query)
+            .then(res => {
+                var numberid = res.rows[0].id
+                /*Si no existe nada en la BD, al crear el primer ticket también se crea el repositorio*/
+                if (this.tickets !== undefined) {
+                    this.tickets.set(numberid, new Ticket(numberid, ticket.title, ticket.description));
+                } else {
+                    var aux = [];
+                    var allTickets = client.query('SELECT * FROM tickets;')
+                        .then(response => {
+                            for (var i in response.rows) {
+                                var t = new Ticket(response.rows[i].id,response.rows[i].title,response.rows[i].description)
+                                aux.push([Number(response.rows[i].id),t])
+                            }
+                            this.tickets = new Map(aux)
+                        })
+                        .catch(err => {
+                            console.log(err)
+                        })
+                    }
+                })
+            }
 
             
         return "Ticket Added"
