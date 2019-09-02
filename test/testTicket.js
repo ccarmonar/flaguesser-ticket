@@ -26,10 +26,6 @@ const connectionData = {
 const client = new Client(connectionData)
 client.connect()
 
-
-
-
-
 describe('Ticket test - create', function(){
 	it('Create new ticket test', function(){
 		console.log(test_jsonTicket);

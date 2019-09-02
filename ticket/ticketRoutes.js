@@ -1,7 +1,7 @@
 'use strict';
  /*conexión con express y comunicación con el repositorio de tickets*/
 const Router = require('express');
-const TicketModel = require('../ticket/ticketModel');
+//const TicketModel = require('../ticket/ticketModel');
 const ticketRepo = require('../ticket/ticketRepository');
  
 
