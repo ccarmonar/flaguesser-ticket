@@ -1,0 +1,21 @@
+sudo: required
+services:
+- docker
+language: node_js
+node_js:
+- '10'
+script:
+- npm install
+- npm test
+after_success:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+- docker build . -t ${DOCKER_USERNAME}/gamesplayer
+- docker push ${DOCKER_USERNAME}/gamesplayer
+- 'curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json"
+  -H "Travis-API-Version: 3" -H "Authorization: token ${TRAVIS_API_TOKEN}" -d ''{"request":{"branch":"master"}}''
+  https://api.travis-ci.org/repo/${TRAVIS_USERNAME}%2F${TRAVIS_REPO}/requests
+
+'
+env:
+  global:
+    secure: r9Fxp1vMi6kAPXoBLEFrW7BZ79No3h5PwG44M1YChEyIw5t9vtTNmhXWluZ6aINk6NOEOtxMXb1UhXEQ3CEGNdF13miCmLiBPYxSYabpHxVgYeYkZDI6AXs/41SFPCLlZ6tuw/oHxeVVxAvrHIaZH9n+MaYdM3GhnXEZC+z/Bsiumb9K3VuPnVVBsyDKVd5hanaYPn702b32h7wN2QerGOdBm/+aZNkaUi3NTbcoz9uMH1Osy0nxenTvi+YzOX9X9N7i9uSagCGCI+ccSxzk50Z5zuTHy4ez0eg+dY+PtT3K38ET66Ne1NAB5QZbJRMivOUjcV/P0Mr10Kj3KDlsNLg+rM6aNWfudu9D/b+sVFGQga9hIdyuebMovfNG4mkzGus1aBtFEKlQJj1gWN40XznZL9FUAHz7H7cNo25FaWPqR3K6YORtWCMl8MzyJ/vbRoo7PIPKTIEzH29H+J5ts/U03a1K0ICsrafx9j3fOwsdLh0kBp/sf9O3leITjLBy1mAFbKF5vGb6B6sip+oaE997Z0mNd/38hhSoJKXeofH6lbRpxG7IvUT8ipmMf1EYaTS2TDxWfDqMv/yb+R4N68h9C5wIE5k5Db2chekLbnHFeaJnq/JK67jOq066jHE6Ta0HjK03Yr5U1USZOmkJ6n2QNkTB0o7YllN/UVMRY9A=
