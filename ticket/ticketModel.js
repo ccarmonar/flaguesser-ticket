@@ -7,7 +7,7 @@ const sequelize = new Sequelize(
 	process.env['DB_PASS'] || 'password', {
   host: process.env['DB_HOST'] || 'localhost',
   dialect: 'postgres',
-  logging: false
+  
 });
 
 /*Se crea tabla de ticket en la BD si no existe */
