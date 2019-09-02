@@ -26,7 +26,7 @@ const connectionData = {
 const client = new Client(connectionData)
 client.connect()
 
-describe('Ticket test - create', function(){
+describe('Ticket test', function(){
 	it('Create new ticket test', function(){
 		console.log(test_jsonTicket);
 		chai.request(url)
@@ -48,10 +48,7 @@ describe('Ticket test - create', function(){
 	        done();
 	      })
 	});
-});
 
-
-describe('Ticket test - obtain', function(){
 	it('Obtain all tickets', (done) => {
 		chai.request(url)
 			.get('/all')
@@ -60,20 +57,5 @@ describe('Ticket test - obtain', function(){
 				done();
 			});
 	});
-	/* Deuda tecnica :,(
-	it('Get last ticket', (done) => {
-		var last = client.query('select id from tickets order by id desc limit 1;')
-		 .then(re => {
-			var numberid = Number(re.rows[0].id)
-			var get = '/get/'+numberid;
-			chai.request(url)
-			  .get(get)
-			  .end(function(err,res){
-				expect(res.body).to.have.property('id').to.be.equal(numberid);
-				expect(res).to.have.status(200);
-				done();
-			});
-		});
-	});
-	*/
+
 });
