@@ -40,7 +40,6 @@ class TicketRepository {
  
     /*Obtener un ticket por id*/
     getById(id) {
-        console.log(this.tickets.get(id))
         if (this.tickets.get(id) !== undefined){
             return this.tickets.get(id);
         } else {
@@ -110,12 +109,13 @@ class TicketRepository {
                 })
             }
 
-            
         return "Ticket Added"
     }
     
 }
  
+
+
  /*Exportamos el repositorio*/
 const ticketRepository = new TicketRepository();
 module.exports = ticketRepository;
