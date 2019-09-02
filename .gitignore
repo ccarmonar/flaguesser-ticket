@@ -2,3 +2,4 @@ node_modules/
 *.flaguesser-ticket.sublime-project
 *.sublime-workspace
 *.docker-compose.yml
+*.ticket/ticketModel.js

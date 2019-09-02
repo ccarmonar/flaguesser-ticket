@@ -26,9 +26,8 @@ const connectionData = {
 const client = new Client(connectionData)
 client.connect()
 
-describe('Ticket test', function(){
-	it('Create new ticket test', function(){
-		console.log(test_jsonTicket);
+describe('Ticket test - POST', function(){
+	it('Crear ticket valido', function(){
 		chai.request(url)
 		 .post('/save')
 		 .send(test_jsonTicket)
@@ -38,8 +37,7 @@ describe('Ticket test', function(){
 	      })
 	});
 
-	it('No create fake tickets', function(){
-		console.log(test_jsonNoTicket);
+	it('No crear ticket invalido', function(){
 		chai.request(url)
 		 .post('/save')
 		 .send(test_jsonNoTicket)
@@ -49,7 +47,11 @@ describe('Ticket test', function(){
 	      })
 	});
 
-	it('Obtain all tickets', (done) => {
+});
+
+
+describe('Ticket test - GET', function(){
+	it('Obtener todo los tickets', (done) => {
 		chai.request(url)
 			.get('/all')
 			.end( function(err,res){
@@ -57,5 +59,16 @@ describe('Ticket test', function(){
 				done();
 			});
 	});
+
+	it('Obtener ticket id 2', (done) => {
+		chai.request(url)
+			.get('/get/2')
+			.end( function(err,res){
+				expect(res.body).to.have.property('id').to.be.equal(2)
+				expect(res).to.have.status(200);
+				done();
+			});
+	});
+
 
 });
