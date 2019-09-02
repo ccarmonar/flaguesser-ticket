@@ -12,8 +12,8 @@ script:
 - npm test
 after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build . -t ${DOCKER_USERNAME}/gamesplayer
-- docker push ${DOCKER_USERNAME}/gamesplayer
+- docker build . -t ${DOCKER_USERNAME}/gamesticket
+- docker push ${DOCKER_USERNAME}/gamesticket
 - 'curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json"
   -H "Travis-API-Version: 3" -H "Authorization: token ${TRAVIS_API_TOKEN}" -d ''{"request":{"branch":"master"}}''
   https://api.travis-ci.org/repo/${TRAVIS_USERNAME}%2F${TRAVIS_REPO}/requests
