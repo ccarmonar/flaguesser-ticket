@@ -85,11 +85,11 @@ class TicketRepository {
                 text: 'INSERT INTO tickets(title, description) VALUES ($1, $2) RETURNING id',
                 values: [ticket.title, ticket.description],
                 }
-
+            console.log(query);
             var newTicket = client.query(query)
             .then(res => {
                 var numberid = res.rows[0].id
-                /*Si no existe nada en la BD, al crear el primer ticket también se crea el repositorio*/
+                /*Si no existe nada en la   BD, al crear el primer ticket también se crea el repositorio*/
                 if (this.tickets !== undefined) {
                     this.tickets.set(numberid, new Ticket(numberid, ticket.title, ticket.description));
                 } else {
