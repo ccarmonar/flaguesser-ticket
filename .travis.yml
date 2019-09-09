@@ -14,7 +14,7 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker pull owasp/zap2docker-weekly
 - docker build . -t ${DOCKER_USERNAME}/gamesticket
-- docker run --name owasp --link localhost -t owasp/zap2docker-weekly zap-full-scan.py -t http://localhost:3000
+- docker run --name ${DOCKER_USERNAME}/gamesticket --link localhost -t owasp/zap2docker-weekly zap-full-scan.py -t http://localhost:3000
 - docker push ${DOCKER_USERNAME}/gamesticket
 - 'curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json"
   -H "Travis-API-Version: 3" -H "Authorization: token ${TRAVIS_API_TOKEN}" -d ''{"request":{"branch":"master"}}''
