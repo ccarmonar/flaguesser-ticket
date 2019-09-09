@@ -14,7 +14,8 @@ after_success:
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker pull owasp/zap2docker-weekly
 - docker build . -t ${DOCKER_USERNAME}/gamesticket
-- docker run --name gamesticket --link ${DOCKER_USERNAME}/gamesticket -t owasp/zap2docker-weekly zap-full-scan.py -t http://localhost:3000
+ - docker run -d --name gamesticket -t ${DOCKER_USERNAME}/gamesticket
+- docker run --name owasp --link gamesticket -t owasp/zap2docker-weekly zap-full-scan.py -t http://localhost:3000
 - docker ps
 - docker push ${DOCKER_USERNAME}/gamesticket
 - 'curl -s -X POST -H "Content-Type: application/json" -H "Accept: application/json"
