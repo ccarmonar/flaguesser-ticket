@@ -74,10 +74,9 @@ describe('Ticket test - POST', function(){
 const test_jsonSQLInjection = JSON.parse('{"title": "SQL Injection TEST", "description": "SQL Injection)'+ "'"  +'; DROP TABLE tickets;"}');
 
 describe('SQL Injection - TEST', function(){
-	
 	it('Crear ticket evitando el SQL Injection', function(){
-		console.log("Se esta tratando de insertar:");
-		console.log(test_jsonSQLInjection);
+		//console.log("Se esta tratando de insertar:");
+		//console.log(test_jsonSQLInjection);
 		chai.request(url)
 		 .post('/save')
 		 .send(test_jsonSQLInjection)
@@ -85,7 +84,7 @@ describe('SQL Injection - TEST', function(){
 	        expect(res).to.have.status(200);
 	        done();
 	      })
-		 console.log("node.js cambia automaticamente las coma por slash coma, lo que evita SQL Injection")
+		 //console.log("node.js cambia automaticamente las coma por slash coma, lo que evita SQL Injection")
 	});
 	it('Crear nuevamente ticket', function(){
 		chai.request(url)
