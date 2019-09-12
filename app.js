@@ -19,6 +19,7 @@ require('dotenv').config({path: __dirname + '/.env'});
 
 
 /*Iniciar server en puerto 3000*/
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
     console.log("Server is up!");
 });
